@@ -6,15 +6,18 @@ function App() {
   const [data, setData] = useState({ loading: true, data: null });
 
   useEffect(() => {
-    axios
-      .get(`https://api.exchangeratesapi.io/latest`)
-      .then(response => setData({ loading: false, data: response.data }));
+    if (localStorage.getItem("data") === null) {
+      axios.get(`https://api.exchangeratesapi.io/latest`).then(response => {
+        setData({ loading: false, data: response.data });
+        localStorage.setItem("data", JSON.stringify(response.data));
+      });
+    }
   }, []);
 
   return (
     <MainWrapper>
       <h1>Foreign exchange rates</h1>
-      {data.loading ? "Loading..." : <code>{JSON.stringify(data)}</code>}
+      {/* {data.loading ? "Loading..." : <code>{JSON.stringify(data)}</code>} */}
     </MainWrapper>
   );
 }
