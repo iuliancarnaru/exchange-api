@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import DisplayData from "./DisplayData";
 
 function App() {
   const [data, setData] = useState({ loading: true, data: null });
 
+  const getData = async endpoint => {
+    let response = await axios.get(endpoint);
+    setData({ loading: false, data: response.data });
+  };
+
   useEffect(() => {
-    if (localStorage.getItem("data") === null) {
-      axios.get(`https://api.exchangeratesapi.io/latest`).then(response => {
-        setData({ loading: false, data: response.data });
-        localStorage.setItem("data", JSON.stringify(response.data));
-      });
-    }
+    getData(`https://api.exchangeratesapi.io/latest`);
   }, []);
+
+  console.log(data);
 
   return (
     <MainWrapper>
       <h1>Foreign exchange rates</h1>
-      {/* {data.loading ? "Loading..." : <code>{JSON.stringify(data)}</code>} */}
+      {data.loading ? "Loading..." : <DisplayData />}
     </MainWrapper>
   );
 }
