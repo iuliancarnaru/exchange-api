@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import DisplayData from "./DisplayData";
+import { InfoUp, InfoDown, InfoNeutral } from "./DisplayData";
 
 function App() {
   const [data, setData] = useState({ loading: true, data: null });
@@ -23,13 +24,17 @@ function App() {
   };
 
   useEffect(() => {
-    getData(`https://api.exchangeratesapi.io/2019-06-20`);
+    getData(`https://api.exchangeratesapi.io/latest`);
   }, []);
 
   return (
     <MainWrapper>
       <h1>Foreign exchange rates</h1>
-      <p>Rates are quoted against the Euro by default</p>
+      <p>Rates are quoted against the Euro by default.</p>
+      <TrendsContainer>
+        <InfoDown /> - smaller than last week <InfoUp /> - bigger than last
+        week <InfoNeutral /> - same like last week
+      </TrendsContainer>
       {data.loading ? "Loading..." : <DisplayData data={data} />}
     </MainWrapper>
   );
@@ -44,6 +49,11 @@ const MainWrapper = styled.div`
   box-sizing: border-box;
   padding: 20px;
   text-rendering: optimizeLegibility;
+`;
+
+const TrendsContainer = styled.div`
+  display: flex;
+  padding: 10px;
 `;
 
 //https://api.exchangeratesapi.io/latest

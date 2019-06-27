@@ -49,7 +49,15 @@ const DisplayData = props => {
             <strong>{key}</strong>
           </p>
           <Price>{parseFloat(rates[key]).toFixed(3)}</Price>
-          <p></p>
+          <Trend>
+            {rates[key] > lastWeek[key] ? (
+              <InfoUp />
+            ) : rates[key] < lastWeek[key] ? (
+              <InfoDown />
+            ) : (
+              <InfoNeutral />
+            )}
+          </Trend>
         </Card>
       ))}
     </FlexContainer>
@@ -77,7 +85,50 @@ const Card = styled.div`
 const Price = styled.span`
   color: white;
   font-weight: bolder;
-  background-color: #e74c3c;
+  background-color: #34495e;
   padding: 2px 7px;
   border-radius: 5px;
+`;
+
+const Trend = styled.div`
+  padding: 20px 10px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;
+
+export const InfoUp = styled.div`
+  /* width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #e74c3c; */
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+
+  border-bottom: 10px solid#e74c3c;
+`;
+
+export const InfoDown = styled.div`
+  /* width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #2ecc71; */
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+
+  border-top: 10px solid #2ecc71;
+`;
+
+export const InfoNeutral = styled.div`
+  /* width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #f1c40f; */
+  width: 20px;
+  height: 5px;
+  background-color: #f1c40f;
 `;
