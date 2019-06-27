@@ -29,6 +29,7 @@ function App() {
   return (
     <MainWrapper>
       <h1>Foreign exchange rates</h1>
+      <p>Rates are quoted against the Euro by default</p>
       {data.loading ? "Loading..." : <DisplayData data={data} />}
     </MainWrapper>
   );
@@ -41,6 +42,8 @@ const MainWrapper = styled.div`
   margin: 0 auto;
   font-family: "PT Sans", sans-serif;
   box-sizing: border-box;
+  padding: 20px;
+  text-rendering: optimizeLegibility;
 `;
 
 //https://api.exchangeratesapi.io/latest
