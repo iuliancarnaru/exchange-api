@@ -31,10 +31,6 @@ function App() {
     <MainWrapper>
       <h1>Foreign exchange rates</h1>
       <p>Rates are quoted against the Euro by default.</p>
-      <TrendsContainer>
-        <InfoDown /> - smaller than last week <InfoUp /> - bigger than last
-        week <InfoNeutral /> - same like last week
-      </TrendsContainer>
       {data.loading ? "Loading..." : <DisplayData data={data} />}
     </MainWrapper>
   );
@@ -49,11 +45,6 @@ const MainWrapper = styled.div`
   box-sizing: border-box;
   padding: 20px;
   text-rendering: optimizeLegibility;
-`;
-
-const TrendsContainer = styled.div`
-  display: flex;
-  padding: 10px;
 `;
 
 //https://api.exchangeratesapi.io/latest

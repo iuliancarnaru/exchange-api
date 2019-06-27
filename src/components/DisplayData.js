@@ -128,6 +128,7 @@ export const InfoNeutral = styled.div`
   height: 15px;
   border-radius: 50%;
   background-color: #f1c40f; */
+  margin-top: 3px;
   width: 20px;
   height: 5px;
   background-color: #f1c40f;
