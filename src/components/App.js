@@ -23,7 +23,7 @@ function App() {
   };
 
   useEffect(() => {
-    getData(`https://api.exchangeratesapi.io/latest`);
+    getData(`https://api.exchangeratesapi.io/2019-06-20`);
   }, []);
 
   return (
