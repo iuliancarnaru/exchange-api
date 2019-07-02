@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import DisplayData from "./DisplayData";
-import { InfoUp, InfoDown, InfoNeutral } from "./DisplayData";
+// import { InfoUp, InfoDown, InfoNeutral } from "./DisplayData";
 
 function App() {
   const [data, setData] = useState({ loading: true, data: null });
